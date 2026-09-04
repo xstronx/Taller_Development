@@ -112,60 +112,71 @@ const MateriaPrima = () => {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="bg-gray-800 rounded-xl shadow-2xl overflow-hidden border border-gray-700"
         >
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-700">
+          <div className="overflow-hidden">
+            <table className="w-full table-fixed divide-y divide-gray-700">
               <thead className="bg-gradient-to-r from-black to-red-900">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">ID</th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">Nombre</th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">Cantidad</th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">Unidad</th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">Detalles</th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">Precio Unitario</th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">Fecha de ingreso</th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">Acciones</th>
+                  <th className="px-4 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-normal break-words">ID</th>
+                  <th className="px-4 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Nombre</th>
+                  <th className="px-4 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Cantidad</th>
+                  <th className="px-4 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Unidad</th>
+                  <th className="px-4 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Detalles</th>
+                  <th className="px-4 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Precio Unitario</th>
+                  <th className="px-4 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Fecha de ingreso</th>
+                  <th className="px-4 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Acciones</th>
                 </tr>
               </thead>
               <tbody className="bg-gray-800 divide-y divide-gray-700">
-                {materiaPrima.map((item, index) => (
-                  <motion.tr 
-                    key={item.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    className="hover:bg-gray-700 transition-colors"
-                  >
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{item.id}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{item.nombre}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{item.cantidad}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{item.unidadMedida}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{item.detalles}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">${item.precioUnitario}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
-                      {item.fechaIngreso
-                        ? new Date(item.fechaIngreso).toLocaleDateString('es-EC', { year: 'numeric', month: '2-digit', day: '2-digit' })
-                        : ''}
+                {materiaPrima.length > 0 ? (
+                  materiaPrima.map((item, index) => (
+                    <motion.tr 
+                      key={item.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="hover:bg-gray-700 transition-colors"
+                    >
+                      <td className="px-4 py-4 text-sm text-gray-300 break-words">{item.id}</td>
+                      <td className="px-4 py-4 text-sm font-medium text-white break-words">{item.nombre}</td>
+                      <td className="px-4 py-4 text-sm text-gray-300 break-words">{item.cantidad}</td>
+                      <td className="px-4 py-4 text-sm text-gray-300 break-words">{item.unidadMedida}</td>
+                      <td className="px-4 py-4 text-sm text-gray-300 break-words">{item.detalles}</td>
+                      <td className="px-4 py-4 text-sm text-gray-300 break-words">${item.precioUnitario}</td>
+                      <td className="px-4 py-4 text-sm text-gray-300 break-words">
+                        {item.fechaIngreso
+                          ? new Date(item.fechaIngreso).toLocaleDateString('es-EC', { year: 'numeric', month: '2-digit', day: '2-digit' })
+                          : ''}
+                      </td>
+                      <td className="px-4 py-4 text-sm font-medium break-words">
+                        <motion.button 
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          className="text-red-400 hover:text-red-300 mr-4"
+                          onClick={() => openEditModal(item)}
+                        >
+                          <FiEdit size={18} />
+                        </motion.button>
+                        <motion.button 
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          className="text-red-600 hover:text-red-500"
+                          onClick={() => handleDelete(item.id)}
+                        >
+                          <FiTrash2 size={18} />
+                        </motion.button>
+                      </td>
+                    </motion.tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="8" className="px-4 py-10">
+                      <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-gray-600 bg-gray-900/60 py-8 text-center">
+                        <p className="text-sm font-semibold text-white">No hay materias primas disponibles</p>
+                        <p className="text-xs text-gray-400">Cuando agregues registros, aparecerán aquí.</p>
+                      </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <motion.button 
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="text-red-400 hover:text-red-300 mr-4"
-                        onClick={() => openEditModal(item)}
-                      >
-                        <FiEdit size={18} />
-                      </motion.button>
-                      <motion.button 
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="text-red-600 hover:text-red-500"
-                        onClick={() => handleDelete(item.id)}
-                      >
-                        <FiTrash2 size={18} />
-                      </motion.button>
-                    </td>
-                  </motion.tr>
-                ))}
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>

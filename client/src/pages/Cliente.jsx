@@ -131,16 +131,16 @@ const Cliente = () => {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl overflow-hidden border border-gray-700"
       >
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-700">
+        <div className="overflow-hidden">
+          <table className="w-full table-fixed divide-y divide-gray-700">
             <thead className="bg-gradient-to-r from-black to-red-900">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider">Nombres</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider">Apellidos</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider">Cédula</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider">Teléfono</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider">Email</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider">Acciones</th>
+                <th className="px-4 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Nombres</th>
+                <th className="px-4 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Apellidos</th>
+                <th className="px-4 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Cédula</th>
+                <th className="px-4 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Teléfono</th>
+                <th className="px-4 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Email</th>
+                <th className="px-4 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Acciones</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-700">
@@ -154,12 +154,13 @@ const Cliente = () => {
                     }}
                     className="bg-gray-800/50 hover:bg-gray-800/80 transition-colors"
                   >
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-300">{cliente.nombre}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{cliente.apellido}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{cliente.cedula}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{cliente.telefono}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{cliente.email}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium flex gap-3">
+                    <td className="px-4 py-4 text-sm font-medium text-gray-300 break-words">{cliente.nombre}</td>
+                    <td className="px-4 py-4 text-sm text-gray-300 break-words">{cliente.apellido}</td>
+                    <td className="px-4 py-4 text-sm text-gray-300 break-words">{cliente.cedula}</td>
+                    <td className="px-4 py-4 text-sm text-gray-300 break-words">{cliente.telefono}</td>
+                    <td className="px-4 py-4 text-sm text-gray-300 break-words">{cliente.email}</td>
+                    <td className="px-4 py-4 text-sm font-medium">
+                      <div className="flex gap-3 flex-wrap">
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -187,6 +188,7 @@ const Cliente = () => {
                       >
                         <FiTrash2 />
                       </motion.button>
+                      </div>
                     </td>
                   </motion.tr>
                 ))

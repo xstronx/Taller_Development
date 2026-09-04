@@ -348,78 +348,91 @@ useEffect(() => {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl overflow-hidden border border-gray-700"
       >
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-700">
+        <div className="overflow-hidden">
+          <table className="w-full table-fixed divide-y divide-gray-700">
             <thead className="bg-gradient-to-r from-black to-red-900">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider">ID</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider">Título</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider">Descripción</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider">Responsable</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider">Cliente</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider">Estado</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider">Acciones</th>
+                <th className="px-4 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider whitespace-normal break-words">ID</th>
+                <th className="px-4 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Título</th>
+                <th className="px-4 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Descripción</th>
+                <th className="px-4 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Responsable</th>
+                <th className="px-4 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Cliente</th>
+                <th className="px-4 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Estado</th>
+                <th className="px-4 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider whitespace-normal break-words">Acciones</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-700">
-              {ordenes.map((orden) => (
-                <motion.tr 
-                  key={orden.id}
-                  whileHover={{ 
-                    backgroundColor: 'rgba(127, 29, 29, 0.1)',
-                    transition: { duration: 0.2 }
-                  }}
-                  className="bg-gray-800/50 hover:bg-gray-800/80 transition-colors"
-                >
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-300">{orden.id}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{orden.titulo}</td>
-                  <td className="px-6 py-4 text-sm text-gray-400 max-w-xs truncate">{orden.descripcion}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{orden.usuario?.nombre || 'N/A'}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{`${orden.cliente?.nombre.split(' ')[0]} ${orden.cliente?.apellido.split(' ')[0]}` || 'N/A'}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <motion.span 
-                      whileHover={{ scale: 1.05 }}
-                      className={`px-3 py-1.5 text-xs font-semibold rounded-full ${
-                        orden.estado === 'COMPLETADA' ? 'bg-green-900/50 text-green-300' :
-                        orden.estado === 'EN_PROCESO' ? 'bg-yellow-900/50 text-yellow-300' :
-                        'bg-gray-700 text-gray-300'
-                      }`}
-                    >
-                      {orden.estado?.replace('_', ' ') || 'PENDIENTE'}
-                    </motion.span>
+              {ordenes.length > 0 ? (
+                ordenes.map((orden) => (
+                  <motion.tr 
+                    key={orden.id}
+                    whileHover={{ 
+                      backgroundColor: 'rgba(127, 29, 29, 0.1)',
+                      transition: { duration: 0.2 }
+                    }}
+                    className="bg-gray-800/50 hover:bg-gray-800/80 transition-colors"
+                  >
+                    <td className="px-4 py-4 text-sm font-medium text-gray-300 break-words">{orden.id}</td>
+                    <td className="px-4 py-4 text-sm font-medium text-white break-words">{orden.titulo}</td>
+                    <td className="px-4 py-4 text-sm text-gray-400 break-words">{orden.descripcion}</td>
+                    <td className="px-4 py-4 text-sm text-gray-300 break-words">{orden.usuario?.nombre || 'N/A'}</td>
+                    <td className="px-4 py-4 text-sm text-gray-300 break-words">{`${orden.cliente?.nombre.split(' ')[0]} ${orden.cliente?.apellido.split(' ')[0]}` || 'N/A'}</td>
+                    <td className="px-4 py-4">
+                      <motion.span 
+                        whileHover={{ scale: 1.05 }}
+                        className={`px-3 py-1.5 text-xs font-semibold rounded-full ${
+                          orden.estado === 'COMPLETADA' ? 'bg-green-900/50 text-green-300' :
+                          orden.estado === 'EN_PROCESO' ? 'bg-yellow-900/50 text-yellow-300' :
+                          'bg-gray-700 text-gray-300'
+                        }`}
+                      >
+                        {orden.estado?.replace('_', ' ') || 'PENDIENTE'}
+                      </motion.span>
+                    </td>
+                    <td className="px-4 py-4 text-sm font-medium">
+                      <div className="flex gap-3 flex-wrap">
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => openDetailsModal(orden)}
+                        className="p-2 bg-gray-700 rounded-lg hover:bg-blue-600/30 text-blue-400 hover:text-blue-300 transition-all"
+                        title="Ver detalles"
+                      >
+                        <FiEye />
+                      </motion.button>
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => openEditModal(orden)}
+                        // onClick={() => navigate(`/ordenes-trabajo/editar/${orden.id}`)}
+                        className="p-2 bg-gray-700 rounded-lg hover:bg-purple-600/30 text-purple-400 hover:text-purple-300 transition-all"
+                        title="Editar"
+                      >
+                        <FiEdit />
+                      </motion.button>
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => handleDelete(orden.id)}
+                        className="p-2 bg-gray-700 rounded-lg hover:bg-red-600/30 text-red-400 hover:text-red-300 transition-all"
+                        title="Eliminar"
+                      >
+                        <FiTrash2 />
+                      </motion.button>
+                      </div>
+                    </td>
+                  </motion.tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="7" className="px-4 py-10">
+                    <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-gray-600 bg-gray-900/60 py-8 text-center">
+                      <p className="text-sm font-semibold text-white">No hay órdenes de trabajo registradas</p>
+                      <p className="text-xs text-gray-400">Crea una orden nueva para empezar a gestionarlas.</p>
+                    </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium flex gap-3">
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      onClick={() => openDetailsModal(orden)}
-                      className="p-2 bg-gray-700 rounded-lg hover:bg-blue-600/30 text-blue-400 hover:text-blue-300 transition-all"
-                      title="Ver detalles"
-                    >
-                      <FiEye />
-                    </motion.button>
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      onClick={() => openEditModal(orden)}
-                      // onClick={() => navigate(`/ordenes-trabajo/editar/${orden.id}`)}
-                      className="p-2 bg-gray-700 rounded-lg hover:bg-purple-600/30 text-purple-400 hover:text-purple-300 transition-all"
-                      title="Editar"
-                    >
-                      <FiEdit />
-                    </motion.button>
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      onClick={() => handleDelete(orden.id)}
-                      className="p-2 bg-gray-700 rounded-lg hover:bg-red-600/30 text-red-400 hover:text-red-300 transition-all"
-                      title="Eliminar"
-                    >
-                      <FiTrash2 />
-                    </motion.button>
-                  </td>
-                </motion.tr>
-              ))}
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
@@ -507,14 +520,14 @@ useEffect(() => {
                   </div>
                 ) : (
                   <div className="border border-gray-700 rounded-lg overflow-hidden">
-                    <table className="min-w-full divide-y divide-gray-700">
+                    <table className="w-full table-fixed divide-y divide-gray-700">
                       <thead className="bg-gradient-to-r from-black to-red-900">
                         <tr>
-                          <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase">Nombre</th>
-                          <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase">Cantidad Usada</th>
-                          <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase">Unidad</th>
-                          <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase">Precio Unit.</th>
-                          <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase">Subtotal</th>
+                          <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase whitespace-normal break-words">Nombre</th>
+                          <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase whitespace-normal break-words">Cantidad Usada</th>
+                          <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase whitespace-normal break-words">Unidad</th>
+                          <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase whitespace-normal break-words">Precio Unit.</th>
+                          <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase whitespace-normal break-words">Subtotal</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-700">
@@ -525,13 +538,13 @@ useEffect(() => {
                               whileHover={{ backgroundColor: 'rgba(127, 29, 29, 0.1)' }}
                               className="bg-gray-800/50"
                             >
-                              <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-300">{mp.nombre}</td>
-                              <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-300">{mp.cantidadUsada}</td>
-                              <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-300">{mp.unidadMedida}</td>
-                              <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-300">
+                              <td className="px-4 py-3 text-sm text-gray-300 break-words">{mp.nombre}</td>
+                              <td className="px-4 py-3 text-sm text-gray-300 break-words">{mp.cantidadUsada}</td>
+                              <td className="px-4 py-3 text-sm text-gray-300 break-words">{mp.unidadMedida}</td>
+                              <td className="px-4 py-3 text-sm text-gray-300 break-words">
                                 ${mp.precioUnitario?.toFixed(2) || '0.00'}
                               </td>
-                              <td className="px-4 py-3 whitespace-nowrap text-sm text-green-400 font-semibold">
+                              <td className="px-4 py-3 text-sm text-green-400 font-semibold break-words">
                                 ${((mp.cantidadUsada || 0) * (mp.precioUnitario || 0)).toFixed(2)}
                               </td>
                             </motion.tr>
@@ -551,7 +564,7 @@ useEffect(() => {
                             <td colSpan="4" className="px-4 py-3 text-right text-sm font-semibold text-white">
                               Total Materiales:
                             </td>
-                            <td className="px-4 py-3 whitespace-nowrap text-sm font-bold text-green-400">
+                            <td className="px-4 py-3 text-sm font-bold text-green-400 break-words">
                               ${currentOrden.materiasPrimas.reduce((total, mp) => 
                                 total + ((mp.cantidadUsada || 0) * (mp.precioUnitario || 0)), 0
                               ).toFixed(2)}

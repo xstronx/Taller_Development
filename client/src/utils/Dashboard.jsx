@@ -7,7 +7,6 @@ const Dashboard = () => {
   const [showMaterialSubmenu, setShowMaterialSubmenu] = useState(false);
   const [showWorkOrderSubmenu, setShowWorkOrderSubmenu] = useState(false);
   const [showClienteSubmenu, setShowClienteSubmenu] = useState(false);
-  const [showOrdenCompraSubmenu, setShowOrdenCompraSubmenu] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const location = useLocation();
 
@@ -16,7 +15,6 @@ const Dashboard = () => {
     setShowMaterialSubmenu(false);
     setShowWorkOrderSubmenu(false);
     setShowClienteSubmenu(false);
-    setShowOrdenCompraSubmenu(false);
   }, [location.pathname]);
 
   return (
@@ -26,7 +24,7 @@ const Dashboard = () => {
         initial={{ width: 256 }}
         animate={{ width: isCollapsed ? 80 : 256 }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="bg-gradient-to-b from-black to-gray-900 border-r border-gray-800 shadow-xl flex flex-col relative z-10"
+        className="bg-gradient-to-b from-black to-gray-900 border-r border-gray-800 shadow-xl flex flex-col relative z-10 overflow-hidden"
       >
         <div className="p-5 border-b border-gray-800 flex items-center gap-3 overflow-hidden">
           <motion.div
@@ -40,11 +38,11 @@ const Dashboard = () => {
             animate={{ opacity: isCollapsed ? 0 : 1 }}
             className="text-2xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent whitespace-nowrap"
           >
-            PintAuto
+            AutoCar DYMA
           </motion.h1>
         </div>
 
-        <nav className="flex-1 p-4 overflow-y-auto">
+        <nav className="flex-1 p-4 overflow-y-auto overflow-x-hidden">
           <ul className="space-y-2">
             <li>
               <Link
@@ -230,61 +228,7 @@ const Dashboard = () => {
               </AnimatePresence>
             </li>
 
-            {/* Órdenes de Compra */}
-            <li>
-              <motion.div
-                whileHover={{ backgroundColor: 'rgba(185, 28, 28, 0.5)' }}
-                className="flex items-center justify-between p-3 rounded-md text-gray-300 cursor-pointer"
-                onClick={() => setShowOrdenCompraSubmenu(!showOrdenCompraSubmenu)}
-              >
-                <div className="flex items-center gap-3">
-                  <FiShoppingCart size={20} className="text-red-500" />
-                  <motion.span
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: isCollapsed ? 0 : 1 }}
-                    className="whitespace-nowrap"
-                  >
-                    Órdenes de Compra
-                  </motion.span>
-                </div>
-                {!isCollapsed && (
-                  showOrdenCompraSubmenu ?
-                    <FiChevronDown size={18} className="text-red-500" /> :
-                    <FiChevronUp size={18} className="text-red-500" />
-                )}
-              </motion.div>
-
-              <AnimatePresence>
-                {showOrdenCompraSubmenu && !isCollapsed && (
-                  <motion.ul
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="overflow-hidden ml-8 space-y-2"
-                  >
-                    <li>
-                      <Link
-                        to="/dashboard/orden-compra"
-                        className="flex items-center gap-3 p-2 rounded-md text-gray-300 hover:bg-red-900/50 hover:text-white transition-all text-sm"
-                      >
-                        <FiList size={16} className="text-red-400" />
-                        <span>Listado</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/dashboard/orden-compra/crear"
-                        className="flex items-center gap-3 p-2 rounded-md text-gray-300 hover:bg-red-900/50 hover:text-white transition-all text-sm"
-                      >
-                        <FiPlusCircle size={16} className="text-red-400" />
-                        <span>Nueva Orden</span>
-                      </Link>
-                    </li>
-                  </motion.ul>
-                )}
-              </AnimatePresence>
-            </li>
+            
 
             {/* Reportes (enlace simple) */}
             <li>
