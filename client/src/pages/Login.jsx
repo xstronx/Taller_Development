@@ -98,7 +98,7 @@ const Login = () => {
             Iniciar Sesión
           </h1>
           <p className="text-center text-gray-300 mb-6">
-            Accede a tu cuenta de <span className="text-red-500 font-semibold">PintAuto</span>
+            Accede a tu cuenta de <span className="text-red-500 font-semibold">DYMA</span>
           </p>
         </motion.div>
 

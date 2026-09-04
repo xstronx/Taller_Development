@@ -79,21 +79,21 @@ const Inicio = () => {
             variants={itemVariants}
             className="text-3xl md:text-4xl font-bold text-white mb-4 text-center md:text-left"
           >
-            Sistema de Gestión <span className="text-red-600 animate-pulse">PintAuto</span>
+            Sistema de Gestión <span className="text-red-600 animate-pulse">AutoCar DYMA</span>
           </motion.h1>
           
           <motion.h2 
             variants={itemVariants}
             className="text-xl text-red-400 font-semibold mb-6 text-center md:text-left"
           >
-            Control Integral de Inventario
+            Control Integral de Ordenes de Trabajo, Materiales y Clientes
           </motion.h2>
           
           <motion.p 
             variants={itemVariants}
             className="text-gray-300 mb-8 leading-relaxed text-center md:text-left"
           >
-            Optimiza tus procesos con nuestra plataforma especializada en gestión de materia prima, 
+            Optimiza tus procesos con nuestra plataforma especializada en gestión de ordenes de trabajo, materiales y clientes, 
             proporcionando control en tiempo real y máxima eficiencia operativa.
           </motion.p>
           
@@ -124,7 +124,7 @@ const Inicio = () => {
         variants={itemVariants}
         className="mt-8 text-center text-gray-400 text-sm"
       >
-        © {new Date().getFullYear()} <span className="text-red-500 font-semibold">PintAuto</span> - Todos los derechos reservados
+        © {new Date().getFullYear()} <span className="text-red-500 font-semibold">AutoCar DYMA</span> - Todos los derechos reservados
       </motion.footer>
     </motion.div>
   )
