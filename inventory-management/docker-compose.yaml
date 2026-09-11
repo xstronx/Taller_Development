@@ -2,10 +2,10 @@
 
 services:
   postgres:
-    container_name: pintAutoSpring
+    container_name: AutoCarSpring
     image: postgres:17
     environment:
-      - POSTGRES_DB=pintAutoSpring
+      - POSTGRES_DB=AutoCarSpring
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
     ports:
