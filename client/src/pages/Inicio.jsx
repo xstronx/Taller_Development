@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import logoCarro from '../assets/logo.jpg'
+import logoCarro from '../assets/logo.png'
 import { motion } from 'framer-motion'
 
 const Inicio = () => {
