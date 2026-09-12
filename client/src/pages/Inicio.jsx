@@ -60,7 +60,7 @@ const Inicio = () => {
         className="max-w-4xl w-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-gray-700"
       >
         {/* Sección de imagen */}
-        <div className="md:w-1/2 bg-black flex items-center justify-center p-8 relative overflow-hidden">
+        <div className="md:w-1/2 bg-white flex items-center justify-center p-8 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-600/10 to-transparent animate-pulse"></div>
           <motion.img 
             src={logoCarro} 
@@ -91,7 +91,7 @@ const Inicio = () => {
           
           <motion.p 
             variants={itemVariants}
-            className="text-gray-300 mb-8 leading-relaxed text-center md:text-left"
+            className="text-white mb-8 leading-relaxed text-center md:text-left"
           >
             Optimiza tus procesos con nuestra plataforma especializada en gestión de ordenes de trabajo, materiales y clientes, 
             proporcionando control en tiempo real y máxima eficiencia operativa.

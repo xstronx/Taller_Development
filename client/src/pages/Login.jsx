@@ -97,7 +97,7 @@ const Login = () => {
           <h1 className="text-3xl font-bold text-center text-white mb-2">
             Iniciar Sesión
           </h1>
-          <p className="text-center text-gray-300 mb-6">
+          <p className="text-center text-white mb-6">
             Accede a tu cuenta de <span className="text-red-500 font-semibold">DYMA</span>
           </p>
         </motion.div>
@@ -114,7 +114,7 @@ const Login = () => {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <motion.div variants={itemVariants}>
-            <label htmlFor="email" className="block text-gray-300 font-medium mb-2">
+            <label htmlFor="email" className="block text-white font-medium mb-2">
               Correo Electrónico
             </label>
             <input
@@ -138,7 +138,7 @@ const Login = () => {
 
           <motion.div variants={itemVariants}>
             <div className="flex justify-between items-center mb-2">
-              <label htmlFor="password" className="block text-gray-300 font-medium">
+              <label htmlFor="password" className="block text-white font-medium">
                 Contraseña
               </label>
               <button
@@ -194,7 +194,7 @@ const Login = () => {
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
-              className="w-full bg-gray-700 hover:bg-gray-600 text-white font-medium py-3 px-4 rounded-md transition-all duration-300 flex items-center justify-center border border-gray-600 block text-center"
+              className="w-full bg-gray-700 hover:bg-gray-600 text-black font-medium py-3 px-4 rounded-md transition-all duration-300 flex items-center justify-center border border-gray-600 block text-center"
             >
               Volver al Inicio
             </motion.a>

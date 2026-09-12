@@ -2,132 +2,132 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Identidad visual del taller */
 :root {
-  --color-primary: #082b70;
-  --color-accent: #ffd900;
-  --color-background: #f3f4f6;
-  --color-surface: #ffffff;
-  --color-danger: #e21b23;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: var(--color-primary);
-  background: var(--color-background);
-}
-
-html,
-body,
-#root {
-  min-height: 100%;
+  --brand-yellow: #ffd900;
+  --brand-blue: #0057b8;
+  --brand-blue-dark: #003b8f;
+  --brand-red: #e21b23;
+  --brand-black: #050505;
+  --brand-white: #ffffff;
+  color: #111827;
+  background: #f3f4f6;
 }
 
 body {
   margin: 0;
-  background: var(--color-background);
+  background: #f3f4f6;
 }
 
-/* Re-map the existing Tailwind utility palette without changing component markup. */
-.bg-gradient-to-br,
-.bg-gradient-to-b {
-  background-image: linear-gradient(135deg, var(--color-primary), var(--color-background)) !important;
+/* The dark utility classes are remapped to the blue, yellow and white brand system. */
+.from-gray-900 {
+  --tw-gradient-from: var(--brand-blue) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 87 184 / 0) var(--tw-gradient-to-position);
 }
 
-.bg-gradient-to-r {
-  background-image: linear-gradient(90deg, var(--color-primary), var(--color-primary)) !important;
+.via-black {
+  --tw-gradient-via: var(--brand-blue-dark);
 }
 
-.bg-black,
-.bg-gray-900 {
-  background-color: var(--color-primary) !important;
+.to-gray-900,
+.to-gray-800 {
+  --tw-gradient-to: var(--brand-blue-dark) var(--tw-gradient-to-position);
 }
 
+.from-black {
+  --tw-gradient-from: var(--brand-blue-dark) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 59 143 / 0) var(--tw-gradient-to-position);
+}
+
+.bg-gray-900,
 .bg-gray-800 {
-  background-color: var(--color-surface) !important;
+  background-color: var(--brand-white) !important;
 }
 
 .bg-gray-700,
 .bg-gray-600 {
-  background-color: #eef1f6 !important;
+  background-color: #f3f4f6 !important;
 }
 
 .border-gray-800,
 .border-gray-700,
 .border-gray-600 {
-  border-color: #d5dbe5 !important;
+  border-color: #d1d5db !important;
+}
+
+.text-gray-300,
+.text-gray-200 {
+  color: #374151 !important;
+}
+
+.text-gray-400 {
+  color: #6b7280 !important;
 }
 
 .text-red-600,
 .text-red-500,
 .text-red-400 {
-  color: var(--color-accent) !important;
+  color: var(--brand-red) !important;
 }
 
-.from-red-600,
-.from-red-700,
-.from-red-800,
-.to-red-600,
-.to-red-700,
-.to-red-800 {
-  --tw-gradient-from: var(--color-accent) var(--tw-gradient-from-position) !important;
-  --tw-gradient-to: #f3bb00 var(--tw-gradient-to-position) !important;
+.bg-red-600,
+.bg-red-700,
+.bg-red-800,
+.bg-red-900 {
+  background-color: var(--brand-red) !important;
 }
 
+/* Main actions use the yellow from the workshop sign with readable dark text. */
 .bg-gradient-to-r.from-red-600,
 .bg-gradient-to-r.from-red-700,
 .bg-gradient-to-r.from-red-800 {
-  background-image: linear-gradient(90deg, var(--color-accent), #f3bb00) !important;
-  color: var(--color-primary) !important;
+  background-image: linear-gradient(90deg, var(--brand-yellow), #f3b900) !important;
+  color: var(--brand-black) !important;
 }
 
 .bg-gradient-to-r.from-red-600:hover,
 .bg-gradient-to-r.from-red-700:hover,
 .bg-gradient-to-r.from-red-800:hover {
-  background-image: linear-gradient(90deg, #f3bb00, var(--color-accent)) !important;
-}
-
-.hover\:bg-red-900\/50:hover,
-.hover\:bg-red-800\/50:hover {
-  background-color: rgba(255, 217, 0, 0.2) !important;
+  background-image: linear-gradient(90deg, #f3b900, var(--brand-yellow)) !important;
 }
 
 .hover\:bg-gray-700:hover,
 .hover\:bg-gray-600:hover {
-  background-color: #fff8bf !important;
+  background-color: #fff3a3 !important;
+}
+
+.hover\:bg-red-900\/50:hover,
+.hover\:bg-red-800\/50:hover {
+  background-color: rgba(255, 217, 0, 0.22) !important;
 }
 
 .focus\:ring-red-500:focus,
 .focus\:border-red-500:focus {
-  --tw-ring-color: var(--color-accent) !important;
-  border-color: var(--color-accent) !important;
+  --tw-ring-color: var(--brand-yellow) !important;
+  border-color: var(--brand-yellow) !important;
 }
 
-/* Ensure content on white cards remains readable after the palette change. */
+/* Cards and table rows are light surfaces, while their old white text becomes dark. */
 .bg-gray-800 .text-white,
 .bg-gray-800 .text-gray-300,
 .bg-gray-800 .text-gray-400 {
-  color: var(--color-primary) !important;
+  color: #111827 !important;
 }
 
 .bg-gray-800 .bg-gradient-to-r .text-white,
 .bg-gray-800 thead .text-white {
-  color: #ffffff !important;
+  color: var(--brand-white) !important;
 }
 
 input.bg-gray-700,
 select.bg-gray-700,
 textarea.bg-gray-700 {
-  color: var(--color-primary) !important;
+  color: #111827 !important;
 }
 
-/* Red is reserved for important/error states. */
 .bg-red-900\/50,
 .bg-red-900\/30,
 .border-red-800,
 .border-red-700 {
   background-color: rgba(226, 27, 35, 0.12) !important;
-  border-color: var(--color-danger) !important;
-}
-
-.text-red-300,
-.text-red-200 {
-  color: var(--color-danger) !important;
+  border-color: var(--brand-red) !important;
 }
